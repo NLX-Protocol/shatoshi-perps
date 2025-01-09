@@ -2,12 +2,12 @@ const { contractAt } = require('../shared/helpers');
 
 const tokens = require('../core/tokens')[network.name];
 
-const PYTH_ORACLE_ADAPTER = "0x8219388A5fF06122Af687FC7dfda3C62a24574D5"
+const PYTH_ORACLE_ADAPTER = "0xAd1d1355be077B06D82fEA75eF3b9941EdE96958"
 
 async function main() {
 
     const {
-        BTC, CORE, ETH, SOL, BNB, DOGE, TRX, SUI, AVAX, XRP, SHIB, BONK, FLOKI, ENA, LINK, POPCAT, SolvBTC, nativeToken
+        BTC, CORE, ETH, SOL, BNB, DOGE, TRX, SUI, AVAX, XRP, SHIB, BONK, FLOKI, ENA, LINK, POPCAT, SolvBTC, PumpBTC, nativeToken
     } = tokens
     const tokenArr = [
         BTC,
@@ -17,7 +17,7 @@ async function main() {
         SHIB, BONK,
         FLOKI, ENA,
         LINK, POPCAT,
-        SolvBTC, nativeToken
+        SolvBTC, PumpBTC, nativeToken
     ]
 
     const pythOracleAdapter = await contractAt("PythOracle", PYTH_ORACLE_ADAPTER)

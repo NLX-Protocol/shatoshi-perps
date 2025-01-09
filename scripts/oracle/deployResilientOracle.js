@@ -12,9 +12,9 @@ const PRICE_FEED_CONTRACT_ADDRESS = "0xA2aa501b19aff244D90cc15a4Cf739D2725B5729"
 async function main() {
 
   const {
-    BTC,  CORE, ETH, SOL, BNB, DOGE, TRX, SUI, AVAX, XRP, SHIB, BONK, FLOKI, ENA, LINK, POPCAT, SolvBTC, nativeToken
+    BTC, CORE, ETH, SOL, BNB, DOGE, TRX, SUI, AVAX, XRP, SHIB, BONK, FLOKI, ENA, LINK, POPCAT, SolvBTC, PumpBTC, nativeToken
   } = tokens
-  const tokenArr = [BTC,  CORE, ETH, SOL, BNB, DOGE, TRX, SUI, AVAX, XRP, SHIB, BONK, FLOKI, ENA, LINK, POPCAT, SolvBTC, nativeToken]
+  const tokenArr = [BTC, CORE, ETH, SOL, BNB, DOGE, TRX, SUI, AVAX, XRP, SHIB, BONK, FLOKI, ENA, LINK, POPCAT, SolvBTC, PumpBTC, nativeToken]
   // const pythMaxStalePeriod = 60 * 60 * 24 // 24 hours
   const pythMaxStalePeriod = 60 * 60 // 1 hour
 
@@ -22,7 +22,7 @@ async function main() {
   const vault = await contractAt("Vault", VAULT)
 
 
- 
+
 
   const signers = await ethers.getSigners()
   const wallet = signers[0]
@@ -81,25 +81,22 @@ async function main() {
 
 
 
-  await sendTxn(vaultPriceFeed.setMaxStrictPriceDeviation(expandDecimals(5, 28)), "vaultPriceFeed.setMaxStrictPriceDeviation") // 0.01 USD
-  // await sendTxn(vaultPriceFeed.setIsAmmEnabled(false), "vaultPriceFeed.setIsAmmEnabled")
-  await sendTxn(vaultPriceFeed.setResilientOracle(resilientOracle.address), "vaultPriceFeed.setResilientOracle")
 
+  
+  // await sendTxn(vaultPriceFeed.setMaxStrictPriceDeviation(expandDecimals(5, 28)), "vaultPriceFeed.setMaxStrictPriceDeviation") // 0.01 USD
+    // await sendTxn(vaultPriceFeed.setResilientOracle(resilientOracle.address), "vaultPriceFeed.setResilientOracle")
+    // await sendTxn(vault.setPriceFeed(vaultPriceFeed.address), "vault.setPriceFeed")
+  // writeTmpAddresses({
+  //   boundValidator: boundValidator.address,
+  //   pythOracle: pythOracle.address,
+  //   resilientOracle: resilientOracle.address,
+  // })
 
-  // set price feed 
-  await sendTxn(vault.setPriceFeed(vaultPriceFeed.address), "vault.setPriceFeed")
-
-
-
-
-
-  writeTmpAddresses({
+  console.log({
     boundValidator: boundValidator.address,
     pythOracle: pythOracle.address,
     resilientOracle: resilientOracle.address,
   })
-
-
 
 }
 
@@ -111,4 +108,4 @@ main()
   })
 
 
-  // npx hardhat run scripts/oracle/deployResilientOracle.js --network core-testnet
+// npx hardhat run scripts/oracle/deployResilientOracle.js --network core-testnet
